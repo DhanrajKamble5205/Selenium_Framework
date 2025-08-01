@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SeleniumFramework">
+  <test name="Search Flight Test">
+    <classes>
+      <class name="testcases.TestSetup"/>
+      <class name="testcases.FlightPageTc"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

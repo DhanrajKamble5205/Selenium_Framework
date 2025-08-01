@@ -1,19 +1,24 @@
 package pageEvent;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import base.BaseTC;
+import utilities.TestUtil;
 
 public class HomePage extends BaseTC{
 	
 	@FindBy(xpath = "//a[@href='/flights/']/span[2]")
 	WebElement flightMenu;
 	
-//	@FindBy(xpath = "//input[@placeholder='From']")
-//	WebElement flightMenu;
+	@FindBy(xpath = "//span[@class='commonModal__close']")
+	WebElement ClosePopUp;
+	
+	@FindBy(xpath = "//span['data-cy=\"travel-card-close']")
+	WebElement ClosePopUp2;
 
 	@FindBy(xpath ="//li[contains(text(),'Round Trip')]")
 	WebElement RoundTripMenu;
@@ -31,13 +36,21 @@ public class HomePage extends BaseTC{
 	WebElement DepartureDropDown;
 	
 	@FindBy(xpath = "//span[normalize-space()='Return']")
-	WebElement ReturnDate;
+	WebElement ReturnDrop;
 	
 	@FindBy(xpath = "//a[@class='primaryBtn font24 latoBold widgetSearchBtn ']")
 	WebElement SearchButton;
 	
-	String DepartureDate = "//div[@aria-label='%replace' and aria-disabled='false']";
-	String RetureDate = "//div[@aria-label='%replace' and aria-disabled='false']";
+	String DepartureDate = "//div[@aria-label='%replace%' and aria-disabled='false']";
+	String RetureDate = "//div[@aria-label='%replace%' and aria-disabled='false']";
+	
+	public void selectClosePopUp() {
+		ClosePopUp.click();
+	}
+	
+	public void selectClosePopUp2() {
+		ClosePopUp2.click();
+	}
 	
 	public HomePage() {
 		super();
@@ -65,10 +78,19 @@ public class HomePage extends BaseTC{
 	
 	public void enterDepartureDate() {
 		DepartureDropDown.click();
+		TestUtil date=TestUtil.getCurrentAndRetureDate();
+		driver.findElement(TestUtil.customeXpath(DepartureDate,date.DepartureDate)).click();
 	}
 	
+	public void enterReturnDate() {
+		ReturnDrop.click();
+		TestUtil date=TestUtil.getCurrentAndRetureDate();
+		driver.findElement(TestUtil.customeXpath(RetureDate,date.RetureDate)).click();
+	}
 	
-	
+	public void searchButton() {
+		SearchButton.click();
+	}
 	
 	
 }
